@@ -1,0 +1,11 @@
+name = Basic Site Config
+description = Exported basic site config
+core = 7.x
+package = Seven
+version = 7.x-1.0-alpha2
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = site_name
+features[variable][] = site_slogan
