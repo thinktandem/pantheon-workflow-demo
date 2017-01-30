@@ -4,6 +4,12 @@ php:
   - '7.0'
 services:
   - docker
+
+before_install:
+
+  # Add our SSH key for deploy func
+  - openssl aes-256-cbc -K $encrypted_b10bc99ab66d_key -iv $encrypted_b10bc99ab66d_iv -in travis.id_rsa.enc -out $HOME/.ssh/travis.id_rsa -d
+
 install:
 
   # Install composer deps
@@ -15,4 +21,26 @@ script:
   - composer test
 
 after_success:
-  - echo "Deploy here"
+
+  # Set up the SSH key
+  - chmod 600 $HOME/.ssh/travis.id_rsa
+  - eval "$(ssh-agent)"
+  - ssh-add $HOME/.ssh/travis.id_rsa
+
+  # Set a user for things
+  - git config --global user.name "Travis Bot"
+  - git config --global user.email "info@thinktandem.io"
+
+  # Set up our repos
+  - git remote add upstream ssh://codeserver.dev.0d4eedc2-183e-4d80-8f00-9c9720b5c816@codeserver.dev.0d4eedc2-183e-4d80-8f00-9c9720b5c816.drush.in:2222/~/repository.git
+
+  # We need to re-add this in because our clone was originally read-only
+  - git remote rm origin
+  - git remote add origin git@github.com:thinktandem/pantheon-workflow-demo.git
+  - git checkout $TRAVIS_BRANCH
+
+  # Pull in any remote changes
+  - git pull upstream $TRAVIS_BRANCH
+
+  # And then deploy
+  - git push upstream $TRAVIS_BRANCH
