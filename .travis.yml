@@ -22,10 +22,11 @@ script:
 
 after_success:
 
-  # Set up the SSH key
+  # Set up the SSH key and config
   - chmod 600 $HOME/.ssh/travis.id_rsa
   - eval "$(ssh-agent)"
   - ssh-add $HOME/.ssh/travis.id_rsa
+  - cp -rf ssh-config $HOME/.ssh/config
 
   # Set a user for things
   - git config --global user.name "Travis Bot"
