@@ -3,6 +3,7 @@ CONTENTS OF THIS FILE
 ---------------------
 
  * About Drupal
+ * Test Deploy
  * Configuration and features
  * Installation profiles
  * Appearance
