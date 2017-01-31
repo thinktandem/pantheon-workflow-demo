@@ -4,6 +4,7 @@ CONTENTS OF THIS FILE
 
  * About Drupal
  * Test Deploy
+ * LALALALA
  * Configuration and features
  * Installation profiles
  * Appearance
