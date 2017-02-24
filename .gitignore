@@ -46,3 +46,8 @@ Thumbs.db
 # COMPOSER #
 ############
 vendor
+
+# KEYS #
+########
+*id_rsa*
+
