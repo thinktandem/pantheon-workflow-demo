@@ -2,7 +2,7 @@ A Drupal 7 site with all the tools for setting up a continuous integration workf
 
 ## Github
 
-This is very helpful text.
+This is very helpful text. Take 2.
 
 Github is the canonical code repository. Once you've setup the workflow, you should push your changes to Github, and those will be automatically deployed to Pantheon (provided they pass tests) by Travis. To setup with Github...
 
